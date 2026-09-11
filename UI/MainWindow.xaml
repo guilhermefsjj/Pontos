@@ -1,0 +1,92 @@
+<Window x:Class="Pontos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Pontos - Ganhe pontos enquanto usa o computador"
+        Height="600"
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5"
+        FontFamily="Segoe UI"
+        FontSize="12">
+    <Grid Background="#F5F5F5">
+        <StackPanel Orientation="Vertical" Margin="20">
+            <!-- Header -->
+            <TextBlock Text="PONTOS" FontSize="32" FontWeight="Bold" Foreground="#2E75B6" Margin="0,0,0,10"/>
+            <TextBlock Text="Ganhe pontos enquanto usa o computador" FontSize="14" Foreground="#666666" Margin="0,0,0,20"/>
+
+            <!-- Main Info Panel -->
+            <Grid Background="White" Margin="0,0,0,20" CornerRadius="8" Padding="20" Height="200">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Points and Level -->
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Pontos Atuais" FontSize="12" Foreground="#999999" Margin="0,0,0,5"/>
+                    <TextBlock x:Name="PointsDisplay" Text="0" FontSize="48" FontWeight="Bold" Foreground="#2E75B6"/>
+                    
+                    <TextBlock Text="Nível Atual" FontSize="12" Foreground="#999999" Margin="0,20,0,5"/>
+                    <TextBlock x:Name="LevelDisplay" Text="1" FontSize="36" FontWeight="Bold" Foreground="#F7A800"/>
+                </StackPanel>
+
+                <!-- Progress and Timer -->
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Progresso para Próximo Nível" FontSize="12" Foreground="#999999" Margin="0,0,0,10"/>
+                    <ProgressBar x:Name="LevelProgressBar" Height="20" Background="#E0E0E0" Foreground="#2E75B6" Value="0" Maximum="100"/>
+                    <TextBlock x:Name="ProgressTextBlock" Text="0 / 100 pontos" FontSize="11" Foreground="#666666" Margin="0,5,0,0"/>
+                    
+                    <TextBlock Text="Tempo para Próximo Ponto" FontSize="12" Foreground="#999999" Margin="0,20,0,5"/>
+                    <TextBlock x:Name="TimerDisplay" Text="10:00" FontSize="24" FontWeight="Bold" Foreground="#2E75B6"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Network Mode Section -->
+            <Grid Background="White" Margin="0,0,0,20" CornerRadius="8" Padding="20">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Modo Rede" FontSize="14" FontWeight="Bold" Foreground="#333333" VerticalAlignment="Center"/>
+                        <CheckBox x:Name="NetworkModeToggle" Margin="10,0,0,0" VerticalAlignment="Center" Checked="NetworkModeToggle_Checked" Unchecked="NetworkModeToggle_Unchecked"/>
+                    </StackPanel>
+                    
+                    <TextBlock x:Name="NetworkStatusText" Text="Rede desativada" FontSize="12" Foreground="#999999"/>
+                    
+                    <!-- Peers List -->
+                    <TextBlock Text="Computadores Conectados" FontSize="12" Foreground="#999999" Margin="0,15,0,5"/>
+                    <ListBox x:Name="PeersList" Height="100" Background="#FAFAFA" BorderBrush="#E0E0E0" BorderThickness="1" Padding="5">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ComputerName}" FontWeight="Bold" Margin="0,0,10,0"/>
+                                    <TextBlock Text="{Binding Points}" Foreground="#2E75B6" FontWeight="Bold" Margin="0,0,5,0"/>
+                                    <TextBlock Text="pts" Foreground="#999999"/>
+                                    <TextBlock Text="|" Foreground="#CCCCCC" Margin="5,0"/>
+                                    <TextBlock Text="Level" Foreground="#999999" Margin="5,0,5,0"/>
+                                    <TextBlock Text="{Binding Level}" Foreground="#F7A800" FontWeight="Bold"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+
+            <!-- Recent Points -->
+            <Grid Background="White" CornerRadius="8" Padding="20">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Pontos Recentes" FontSize="14" FontWeight="Bold" Foreground="#333333" Margin="0,0,0,10"/>
+                    <ListBox x:Name="PointsHistoryList" Height="100" Background="#FAFAFA" BorderBrush="#E0E0E0" BorderThickness="1" Padding="5">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding EarnedAt}" Foreground="#999999" Margin="0,0,15,0"/>
+                                    <TextBlock Text="ID:" Foreground="#999999"/>
+                                    <TextBlock Text="{Binding UniqueId, StringFormat={0:G25}}..." FontFamily="Courier New" FontSize="10" Foreground="#666666" Margin="5,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

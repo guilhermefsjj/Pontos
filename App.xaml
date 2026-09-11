@@ -1,0 +1,16 @@
+<Application x:Class="Pontos.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Pontos"
+             StartupUri="UI/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- App-level resources -->
+            <SolidColorBrush x:Key="PrimaryColor">#2E75B6</SolidColorBrush>
+            <SolidColorBrush x:Key="AccentColor">#F7A800</SolidColorBrush>
+            <SolidColorBrush x:Key="BackgroundColor">#F5F5F5</SolidColorBrush>
+            <SolidColorBrush x:Key="TextColor">#333333</SolidColorBrush>
+            <SolidColorBrush x:Key="BorderColor">#CCCCCC</SolidColorBrush>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
